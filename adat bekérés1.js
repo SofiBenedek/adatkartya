@@ -1,7 +1,6 @@
 (() => {
   const LS_KEY = "cards";
 
- 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
@@ -33,23 +32,32 @@
   }
 
   function clearForm() {
-    $$('#req input').forEach(i => i.value = "");
+    $$('#megad input').forEach(i => i.value = "");
   }
 
   function save() {
     const cards = getCards();
-    cards.push(readForm());
+    const formData = readForm();
+    
+
+    if (cards.length > 0) {
+      cards[0] = formData; 
+    } else {
+      cards.push(formData); 
+    }
+    
     setCards(cards);
-    clearForm();
+    render();  
+    clearForm();  
   }
 
   function render() {
-    const container = $(".cards");
+    const container = $(".kartyak");
     container.innerHTML = "";
 
     const cards = getCards();
     if (!cards.length) {
-      container.innerHTML = "<p>Nincs elmentett kartya.</p>";
+      container.innerHTML = "<p>Nincs elmentett kártya.</p>";
       return;
     }
 
@@ -58,7 +66,7 @@
       div.className = "kartya";
 
       div.innerHTML = `
-        <button class="torol" title="Kartya torlese" data-i="${i}">×</button>
+        <button class="torol" title="Kártya törlése" data-i="${i}">×</button>
         ${Object.entries(adat)
           .map(([k, v]) => `<p><strong>${k}:</strong> ${v}</p>`)
           .join("")}
@@ -75,8 +83,6 @@
     render();
   }
 
- 
-  
   document.addEventListener("click", (e) => {
     const btn = e.target.closest(".torol");
     if (btn) {
@@ -85,7 +91,6 @@
     }
   });
 
-  
   window.save = save;
   window.loadCards = render;
 })();
