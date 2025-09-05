@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <title>Kártya Mentés</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documents</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="adat bekérés1.js" defer></script>
 </head>
 <body>
+    <div id="req">
+        <p>name:</p>
+        <input type="text" name="nev"><br>
+        <p>zipcode:</p>
 
-    <form id="dataForm">
-        <label>Név: <input type="text" id="name"></label><br>
-        <label>Irányítószám: <input type="text" id="zipcode"></label><br>
-        <label>Település: <input type="text" id="town"></label><br>
-        <label>Utca: <input type="text" id="street"></label><br>
-        <label>Szám: <input type="text" id="number"></label><br>
-        <button type="button" id="save">Mentés</button>
-    </form>
+        <input type="text" name="code"><br>
+        <p>city</p>
 
-    <div id="card" style="display: none;">
-        <p>Név: <span id="cardName"></span></p>
-        <p>Irányítószám: <span id="cardZipcode"></span></p>
-        <p>Település: <span id="cardTown"></span></p>
-        <p>Utca: <span id="cardStreet"></span></p>
-        <p>Szám: <span id="cardNumber"></span></p>
+        <input type="text" name="tel"><br>
+        <p>street:</p>
+
+        <input type="text" name="str"><br>
+        <p>number:</p>
+
+        <input type="text" name="num"><br>
+        <button onclick="save()">Save</button>
+        <button onclick="loadCards()">Load</button>
     </div>
 
+    <div class="cards"></div>
 </body>
 </html>
